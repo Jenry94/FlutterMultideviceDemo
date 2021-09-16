@@ -26,7 +26,6 @@ class MyApp extends StatelessWidget {
     return ThemeData(
       fontFamily: 'Product Sans',
       primaryColor: Colors.white,
-      accentColor: Colors.lightGreen.shade100,
     );
   }
 
@@ -34,7 +33,6 @@ class MyApp extends StatelessWidget {
     return ThemeData(
       fontFamily: 'Product Sans',
       primaryColor: Colors.black,
-      accentColor: Colors.lightGreen.shade100
     );
   }
 }
