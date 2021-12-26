@@ -1,11 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:multidevice_demo/CustomWidgets/ItemCard.dart';
 import 'package:multidevice_demo/Models/Item.dart';
 
 import 'Utils/Constants.dart';
-import 'Utils/InitConfigs.dart';
+import 'Utils/Tools.dart';
 
 class Home extends StatefulWidget {
   Home({Key? key}) : super(key: key);
@@ -29,7 +28,7 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: appBar(),
-      body: isMobile ? bodyMobile() : bodyHorizontal(), 
+      body: checkScreen(context) ? bodyMobile() : bodyHorizontal(), 
       // floatingActionButton: new FloatingActionButton(
       //   onPressed: generateItems,
       // ),// This trailing comma makes auto-formatting nicer for build methods.
@@ -65,7 +64,7 @@ class _HomeState extends State<Home> {
               right: 0.0,
               child: new Icon(
                 Icons.brightness_1,
-                size: isMobile ? MediaQuery.of(context).size.width * .015 : MediaQuery.of(context).size.width * .004, 
+                size: checkScreen(context) ? MediaQuery.of(context).size.width * .015 : MediaQuery.of(context).size.width * .004, 
                 color: Colors.redAccent
               ),
             )
@@ -120,7 +119,7 @@ class _HomeState extends State<Home> {
 
   Widget filters(){
     return Padding(
-      padding: globalPading().copyWith(top:0, bottom: 0),
+      padding: globalPading(context).copyWith(top:0, bottom: 0),
       child: Container(
         width: MediaQuery.of(context).size.width,
         child: new Row(
@@ -128,7 +127,7 @@ class _HomeState extends State<Home> {
           children: [
             dropDownPrice(),
             new Container(
-              margin: globalPading(),
+              margin: globalPading(context),
               width: 1,
               height: MediaQuery.of(context).size.height * .02,
               color: Colors.black,
@@ -142,7 +141,7 @@ class _HomeState extends State<Home> {
 
   Widget otherFilters(){
     return Padding(
-      padding: globalPading(),
+      padding: globalPading(context),
       child: Container(
         width: MediaQuery.of(context).size.width * .1,
         child: new Column(
@@ -162,11 +161,11 @@ class _HomeState extends State<Home> {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         new Padding(
-          padding: EdgeInsets.only(right: isMobile ? MediaQuery.of(context).size.width * .02 : MediaQuery.of(context).size.width * .005),
+          padding: EdgeInsets.only(right: checkScreen(context) ? MediaQuery.of(context).size.width * .02 : MediaQuery.of(context).size.width * .005),
           child: new Text(
             "Ordenar por",
             style: new TextStyle(
-              fontSize: isMobile ? MediaQuery.of(context).size.width * .03 : MediaQuery.of(context).size.width * .01,
+              fontSize: checkScreen(context) ? MediaQuery.of(context).size.width * .03 : MediaQuery.of(context).size.width * .01,
             )
           ),
         ),
@@ -183,7 +182,7 @@ class _HomeState extends State<Home> {
               child: new Text(
                 "Menor precio",
                 style: new TextStyle(
-                  fontSize: isMobile ? MediaQuery.of(context).size.width * .03 : MediaQuery.of(context).size.width * .01,
+                  fontSize: checkScreen(context) ? MediaQuery.of(context).size.width * .03 : MediaQuery.of(context).size.width * .01,
                 )
               ),
             ),
@@ -192,7 +191,7 @@ class _HomeState extends State<Home> {
               child: new Text(
                 "Mayor precio",
                 style: new TextStyle(
-                  fontSize: isMobile ? MediaQuery.of(context).size.width * .03 : MediaQuery.of(context).size.width * .01,
+                  fontSize: checkScreen(context) ? MediaQuery.of(context).size.width * .03 : MediaQuery.of(context).size.width * .01,
                 )
               ),
             ),
@@ -216,23 +215,6 @@ class _HomeState extends State<Home> {
           },
         ),
       ],
-    );
-  }
-
-  EdgeInsets globalPading(){
-    if(isMobile){
-      return EdgeInsets.fromLTRB(
-        MediaQuery.of(context).size.width * .05, 
-        MediaQuery.of(context).size.height * .015, 
-        MediaQuery.of(context).size.width * .05, 
-        MediaQuery.of(context).size.height * .015
-      );
-    }
-    return EdgeInsets.fromLTRB(
-      MediaQuery.of(context).size.width * .025, 
-      MediaQuery.of(context).size.height * .005, 
-      MediaQuery.of(context).size.width * .025, 
-      MediaQuery.of(context).size.height * .005
     );
   }
 

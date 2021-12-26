@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_multi_formatter/flutter_multi_formatter.dart';
 import 'package:multidevice_demo/Models/Item.dart';
-import 'package:multidevice_demo/Utils/InitConfigs.dart';
+import 'package:multidevice_demo/Utils/Tools.dart';
 import 'package:palette_generator/palette_generator.dart';
 
 class ItemCard extends StatefulWidget {
@@ -44,9 +44,9 @@ class _ItemCardState extends State<ItemCard> {
 
   Widget itemGrid(){
     return Container(
-      padding: globalPading(),
-      width: isMobile ? MediaQuery.of(context).size.width * .5 : MediaQuery.of(context).size.width * .15,
-      height: isMobile ? MediaQuery.of(context).size.width * .6 : MediaQuery.of(context).size.width * .16,
+      padding: cardPadding(),
+      width: checkScreen(context) ? MediaQuery.of(context).size.width * .5 : MediaQuery.of(context).size.width * .15,
+      height: checkScreen(context) ? MediaQuery.of(context).size.width * .6 : MediaQuery.of(context).size.width * .16,
       child: new Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -63,9 +63,9 @@ class _ItemCardState extends State<ItemCard> {
     return Column(
       children: [
         new Container(
-          padding: globalPading(),
-          width: isMobile ? MediaQuery.of(context).size.width : MediaQuery.of(context).size.width * .40,
-          height: isMobile ? MediaQuery.of(context).size.width * .35 : MediaQuery.of(context).size.width * .1,
+          padding: cardPadding(),
+          width: checkScreen(context) ? MediaQuery.of(context).size.width : MediaQuery.of(context).size.width * .40,
+          height: checkScreen(context) ? MediaQuery.of(context).size.width * .35 : MediaQuery.of(context).size.width * .1,
           child: new Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -76,7 +76,7 @@ class _ItemCardState extends State<ItemCard> {
                 children: [
                   image(),
                   new Padding(
-                    padding: globalPading(),
+                    padding: cardPadding(),
                     child: new Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -88,11 +88,17 @@ class _ItemCardState extends State<ItemCard> {
                   ),
                 ],
               ),
-              new IconButton(
-                icon: new Icon(Icons.add_shopping_cart_outlined),
-                onPressed: (){
-                  
-                },
+              new Container(
+                decoration: new BoxDecoration(
+                  color: Theme.of(context).colorScheme.secondary,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: new IconButton(
+                  icon: new Icon(Icons.add_shopping_cart_outlined),
+                  onPressed: (){
+                    
+                  },
+                ),
               )
             ],
           )
@@ -110,9 +116,9 @@ class _ItemCardState extends State<ItemCard> {
             borderRadius: BorderRadius.all(Radius.circular(20))
           ),
           width: MediaQuery.of(context).size.width,
-          height: isMobile ?  MediaQuery.of(context).size.width * .4 : MediaQuery.of(context).size.width * .1,
+          height: checkScreen(context) ?  MediaQuery.of(context).size.width * .4 : MediaQuery.of(context).size.width * .1,
           child: new Container(
-            padding: EdgeInsets.all(isMobile ? MediaQuery.of(context).size.width * .075 : MediaQuery.of(context).size.width * .01),
+            padding: EdgeInsets.all(checkScreen(context) ? MediaQuery.of(context).size.width * .075 : MediaQuery.of(context).size.width * .01),
             child: new Image.asset(
               "assets/images/${widget.item.image}",
               fit: BoxFit.fill,
@@ -122,7 +128,7 @@ class _ItemCardState extends State<ItemCard> {
       }
       return Container(
         width: MediaQuery.of(context).size.width,
-        height: isMobile ?  MediaQuery.of(context).size.width * .4 : MediaQuery.of(context).size.width * .1,
+        height: checkScreen(context) ?  MediaQuery.of(context).size.width * .4 : MediaQuery.of(context).size.width * .1,
         child: new Center(
           child: new CircularProgressIndicator(),
         ),
@@ -135,10 +141,10 @@ class _ItemCardState extends State<ItemCard> {
           color: paletteGenerator!.dominantColor!.color.withOpacity(.75),
           borderRadius: BorderRadius.all(Radius.circular(20))
         ),
-        width: isMobile ? MediaQuery.of(context).size.width * .3 : MediaQuery.of(context).size.width * .075,
-        height: isMobile ?  MediaQuery.of(context).size.width * .3 : MediaQuery.of(context).size.width * .075,
+        width: checkScreen(context) ? MediaQuery.of(context).size.width * .3 : MediaQuery.of(context).size.width * .075,
+        height: checkScreen(context) ?  MediaQuery.of(context).size.width * .3 : MediaQuery.of(context).size.width * .075,
         child: new Container(
-          padding: EdgeInsets.all(isMobile ? MediaQuery.of(context).size.width * .05 : MediaQuery.of(context).size.width * .01),
+          padding: EdgeInsets.all(checkScreen(context) ? MediaQuery.of(context).size.width * .05 : MediaQuery.of(context).size.width * .01),
           child: new Image.asset(
             "assets/images/${widget.item.image}",
             fit: BoxFit.fill,
@@ -147,8 +153,8 @@ class _ItemCardState extends State<ItemCard> {
       );
     }
     return Container(
-      width: isMobile ? MediaQuery.of(context).size.width * .3 : MediaQuery.of(context).size.width * .075,
-      height: isMobile ?  MediaQuery.of(context).size.width * .3 : MediaQuery.of(context).size.width * .075,
+      width: checkScreen(context) ? MediaQuery.of(context).size.width * .3 : MediaQuery.of(context).size.width * .075,
+      height: checkScreen(context) ?  MediaQuery.of(context).size.width * .3 : MediaQuery.of(context).size.width * .075,
       child: new Center(
         child: new CircularProgressIndicator(),
       ),
@@ -159,7 +165,7 @@ class _ItemCardState extends State<ItemCard> {
     return Text(
       widget.item.description,
       style: new TextStyle(
-        fontSize: isMobile ? MediaQuery.of(context).size.width * .035 : MediaQuery.of(context).size.width * .01,
+        fontSize: checkScreen(context) ? MediaQuery.of(context).size.width * .035 : MediaQuery.of(context).size.width * .01,
         color: Colors.grey
       ),
     );
@@ -169,14 +175,14 @@ class _ItemCardState extends State<ItemCard> {
     return Text(
       widget.item.price.toCurrencyString(leadingSymbol: MoneySymbols.DOLLAR_SIGN),
       style: new TextStyle(
-        fontSize: isMobile ? MediaQuery.of(context).size.width * .035 : MediaQuery.of(context).size.width * .01,
+        fontSize: checkScreen(context) ? MediaQuery.of(context).size.width * .035 : MediaQuery.of(context).size.width * .01,
         fontWeight: FontWeight.bold
       ),
     );
   }
 
-  EdgeInsets globalPading(){
-    if(isMobile){
+  EdgeInsets cardPadding(){
+    if(checkScreen(context)){
       return EdgeInsets.fromLTRB(
         MediaQuery.of(context).size.width * .05, 
         MediaQuery.of(context).size.height * .015, 
