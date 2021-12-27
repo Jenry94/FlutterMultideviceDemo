@@ -45,6 +45,7 @@ class MyApp extends StatelessWidget {
       splashColor: corePalette != null ? new Color(corePalette.primary.get(90)) : new Color(0XFFe8f5e9),
 
       appBarTheme: new AppBarTheme(
+        backgroundColor: corePalette != null ? new Color(corePalette.primary.get(90)) : new Color(0xFFede7f6),
         foregroundColor: Colors.black,
         systemOverlayStyle: SystemUiOverlayStyle.dark,
         centerTitle: false
@@ -55,20 +56,25 @@ class MyApp extends StatelessWidget {
   ThemeData darkTheme(CorePalette? corePalette){
     return ThemeData(
       fontFamily: 'Product Sans',
-      scaffoldBackgroundColor: new Color(corePalette?.neutralVariant.get(100) ?? 0xFFFB8C00).withOpacity(0.1),
+      scaffoldBackgroundColor: corePalette != null ? new Color(corePalette.neutralVariant.get(100)) : Colors.white,
 
       colorScheme: ColorScheme.fromSwatch().copyWith(
-        primary: new Color(corePalette?.primary.get(90) ?? 0xFFFB8C00),
-        primaryVariant: new Color(corePalette?.secondary.get(90) ?? 0xFFFB8C00),
-        secondary: new Color(corePalette?.tertiary.get(90) ?? 0xFFFB8C00),
-        secondaryVariant: new Color(corePalette?.neutral.get(90) ?? 0xFFFB8C00),
+        primary: corePalette != null ? new Color(corePalette.primary.get(90)) : new Color(0xFFede7f6),
+        primaryVariant: corePalette != null ? new Color(corePalette.secondary.get(90)) : new Color(0xFFede7f6),
+        secondary: corePalette != null ? new Color(corePalette.tertiary.get(90)) : new Color(0XFFe8f5e9),
+        secondaryVariant: corePalette != null ? new Color(corePalette.neutral.get(90)) : new Color(0XFFfffde7),
       ),
 
+      hoverColor: corePalette != null ? new Color(corePalette.primary.get(90)) : new Color(0XFFe8f5e9).withOpacity(0.25),
+      highlightColor: corePalette != null ? new Color(corePalette.primary.get(90)) : new Color(0XFFe8f5e9),
+      splashColor: corePalette != null ? new Color(corePalette.primary.get(90)) : new Color(0XFFe8f5e9),
+
       appBarTheme: new AppBarTheme(
-        foregroundColor: Colors.white,
-        systemOverlayStyle: SystemUiOverlayStyle.light,
+        backgroundColor: corePalette != null ? new Color(corePalette.primary.get(90)) : new Color(0xFFede7f6),
+        foregroundColor: Colors.black,
+        systemOverlayStyle: SystemUiOverlayStyle.dark,
         centerTitle: false
-        ),
+      ),
     );
   }
 }
