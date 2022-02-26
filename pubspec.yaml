@@ -16,6 +16,7 @@ dependencies:
   palette_generator: ^0.3.2
   flutter_multi_formatter: ^2.5.1
   dynamic_color: ^0.1.0
+  fl_chart: ^0.41.0
   
   flutter:
     sdk: flutter

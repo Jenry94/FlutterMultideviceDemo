@@ -40,9 +40,9 @@ class MyApp extends StatelessWidget {
         secondaryVariant: corePalette != null ? new Color(corePalette.neutral.get(90)) : new Color(0XFFfffde7),
       ),
 
-      hoverColor: corePalette != null ? new Color(corePalette.primary.get(90)) : new Color(0XFFe8f5e9).withOpacity(0.25),
-      highlightColor: corePalette != null ? new Color(corePalette.primary.get(90)) : new Color(0XFFe8f5e9),
-      splashColor: corePalette != null ? new Color(corePalette.primary.get(90)) : new Color(0XFFe8f5e9),
+      hoverColor: corePalette != null ? new Color(corePalette.tertiary.get(90)) : new Color(0XFFe8f5e9).withOpacity(0.25),
+      highlightColor: corePalette != null ? new Color(corePalette.tertiary.get(90)) : new Color(0XFFe8f5e9),
+      splashColor: corePalette != null ? new Color(corePalette.tertiary.get(90)) : new Color(0XFFe8f5e9),
 
       appBarTheme: new AppBarTheme(
         backgroundColor: corePalette != null ? new Color(corePalette.primary.get(90)) : new Color(0xFFede7f6),

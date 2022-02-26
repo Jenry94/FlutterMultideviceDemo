@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:multidevice_demo/CustomWidgets/ChartExample.dart';
 import 'package:multidevice_demo/CustomWidgets/ItemCard.dart';
 import 'package:multidevice_demo/Models/Item.dart';
 
@@ -59,7 +60,7 @@ class _HomeState extends State<Home> {
         icon: new Stack(
           children: [
             new Icon(Icons.shopping_basket_outlined),
-            new Positioned(  // draw a red marble
+            new Positioned(
               top: 0.0,
               right: 0.0,
               child: new Icon(
@@ -80,6 +81,7 @@ class _HomeState extends State<Home> {
     return SafeArea(
       child: new Column(
         children: [
+          new ChartExample(),
           filters(),
           new Expanded(
             child: listItems(),
